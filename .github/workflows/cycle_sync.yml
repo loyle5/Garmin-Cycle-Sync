@@ -30,6 +30,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          
+      - name: Update CA certificates  # ← ✅ 这是关键修复
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates
+          pip install --upgrade certifi
       
       - name: Download FIT files from Garmin
         run: |
